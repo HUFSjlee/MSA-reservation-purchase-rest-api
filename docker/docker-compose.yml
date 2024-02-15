@@ -1,0 +1,63 @@
+version: '3.9'
+services:
+  rds:
+    image: mysql:8.0
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./rds.sql:/docker-entrypoint-initdb.d/rds.sql
+    environment:
+      MYSQL_DATABASE: hufsjlee
+      MYSQL_USER: hufsjlee
+      MYSQL_PASSWORD: 123123
+      MYSQL_ROOT_PASSWORD: 123123
+      TZ: ASIA/SEOUL
+    networks:
+      - msa-network
+
+  user-service:
+    image: user-service-server:tag
+#    build:
+#      context: ../
+#      dockerfile: user-service/docker/Dockerfile
+    ports:
+      - "8081:8081"
+    depends_on:
+      - rds
+    links:
+      - rds
+    networks:
+      - msa-network
+
+  newsfeed-service:
+    image: newsfeed-service-server:tag
+#    build:
+#      context: ../
+#      dockerfile: newsfeed-service/docker/Dockerfile
+    ports:
+      - "8082:8082"
+    depends_on:
+      - rds
+    links:
+      - rds
+    networks:
+      - msa-network
+
+  activities-service:
+    image: activities-service-server:tag
+#    build:
+#      context: ../
+#      dockerfile: activities-service/docker/Dockerfile
+    ports:
+      - "8083:8083"
+    depends_on:
+      - rds
+    links:
+      - rds
+    networks:
+      - msa-network
+
+networks:
+  msa-network:
+    driver: bridge

@@ -1,0 +1,3 @@
+rootProject.name = 'reservationpurchase'
+
+include 'user-service','domain','activities-service','newsfeed-service'
