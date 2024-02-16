@@ -16,6 +16,14 @@ services:
     networks:
       - msa-network
 
+  api-gateway:
+    image: api-gateway:tag
+    ports:
+      - "8080:8080"
+    networks:
+      - msa-network
+
+
   user-service:
     image: user-service-server:tag
 #    build:

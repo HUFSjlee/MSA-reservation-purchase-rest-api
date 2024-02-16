@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/newsfeed")
+@RequestMapping("/newsfeeds")
 public class NewsfeedController {
     private final NewsfeedService newsfeedService;
 
