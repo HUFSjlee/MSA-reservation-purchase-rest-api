@@ -66,6 +66,44 @@ services:
     networks:
       - msa-network
 
+  product-service:
+    image: product-service-server:tag
+    #    build:
+    #      context: ../
+    #      dockerfile: activities-service/docker/Dockerfile
+    ports:
+      - "8084:8084"
+    depends_on:
+      - rds
+      - redis
+    links:
+      - rds
+      - redis
+    environment:
+      - SPRING_REDIS_HOST=redis
+      - SPRING_REDIS_PORT=6379
+
+    networks:
+      - msa-network
+
+  order-service:
+    image: order-service-server:tag
+    ports:
+      - "8085:8085"
+    depends_on:
+      - rds
+    links:
+      - rds
+    networks:
+      - msa-network
+
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
+    networks:
+      - msa-network
+
 networks:
   msa-network:
     driver: bridge
