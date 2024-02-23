@@ -1,4 +1,4 @@
-package com.reservationpurchase.reservationpurchase.common.exception;
+package com.service.orderservice.common.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

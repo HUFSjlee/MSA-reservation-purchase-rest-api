@@ -1,6 +1,6 @@
-package com.reservationpurchase.reservationpurchase.common.exception;
+package com.service.orderservice.common.exception;
 
-import com.reservationpurchase.reservationpurchase.common.response.ResponseCode;
+import com.service.productservice.common.response.ResponseCode;
 
 public class BusinessException extends RuntimeException {
     protected ResponseCode responseCode;

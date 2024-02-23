@@ -1,4 +1,4 @@
-package com.reservationpurchase.reservationpurchase.common.base;
+package com.service.orderservice.common.base;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
