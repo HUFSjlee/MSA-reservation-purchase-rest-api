@@ -34,3 +34,9 @@ spring:
           uri: http://newsfeed-service:8082/
           predicates:
             - Path=/newsfeeds/**
+
+        - id: product-service
+          uri: http://product-service:8084/
+          predicates:
+            - Path=/products/**
+
