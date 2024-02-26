@@ -1,6 +1,7 @@
 package com.service.orderservice.common.exception;
 
-import com.service.productservice.common.response.ResponseCode;
+
+import com.service.orderservice.common.response.ResponseCode;
 
 public class UsernameNotFoundException extends BusinessException {
     public UsernameNotFoundException() {
