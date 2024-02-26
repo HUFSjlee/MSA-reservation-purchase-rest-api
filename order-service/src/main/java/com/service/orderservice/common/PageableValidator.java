@@ -1,6 +1,6 @@
-package com.reservationpurchase.reservationpurchase.common;
+package com.service.orderservice.common;
 
-import com.reservationpurchase.reservationpurchase.common.exception.BadParametersException;
+import com.service.orderservice.common.exception.BadParametersException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
