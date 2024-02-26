@@ -1,4 +1,4 @@
-package com.reservationpurchase.reservationpurchase.common.response;
+package com.service.productservice.common.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
