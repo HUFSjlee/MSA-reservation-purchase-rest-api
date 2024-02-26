@@ -1,6 +1,7 @@
-package com.reservationpurchase.reservationpurchase.common.exception;
+package com.service.orderservice.common.exception;
 
-import com.reservationpurchase.reservationpurchase.common.response.ResponseCode;
+
+import com.service.orderservice.common.response.ResponseCode;
 
 public class NotFoundUserException extends BusinessException {
 
