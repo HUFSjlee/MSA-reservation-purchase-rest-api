@@ -92,8 +92,31 @@ services:
       - "8085:8085"
     depends_on:
       - rds
+      - redis
     links:
       - rds
+      - redis
+    environment:
+      - SPRING_REDIS_HOST=redis
+      - SPRING_REDIS_PORT=6379
+
+    networks:
+      - msa-network
+
+  stock-service:
+    image: stock-service-server:tag
+    ports:
+      - "8086:8086"
+    depends_on:
+      - rds
+      - redis
+    links:
+      - rds
+      - redis
+    environment:
+      - SPRING_REDIS_HOST=redis
+      - SPRING_REDIS_PORT=6379
+
     networks:
       - msa-network
 
