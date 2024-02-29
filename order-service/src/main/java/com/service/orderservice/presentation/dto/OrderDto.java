@@ -38,8 +38,6 @@ public class OrderDto {
         @JsonProperty(value = "user_id")
         private Long userId;
 
-        private String userNmae;
-
         @JsonProperty(value = "product_id")
         private Long productId;
 

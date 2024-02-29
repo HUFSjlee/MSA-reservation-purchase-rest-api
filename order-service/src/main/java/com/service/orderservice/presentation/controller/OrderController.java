@@ -20,6 +20,8 @@ public class OrderController {
     @PostMapping("/create")
     public BaseResponse<OrderDto.CreateResponse> create(@RequestParam String token, @RequestBody @Valid OrderDto.CreateRequest request) {
         Long userId = apiService.getUserId(token);
+        apiService.checkStockInfo(request.getProductId(), request.getQuantity());
+        apiService.reduceStock(request.getProductId(), request.getQuantity());
         return BaseResponse.success(orderService.create(request,userId));
     }
 

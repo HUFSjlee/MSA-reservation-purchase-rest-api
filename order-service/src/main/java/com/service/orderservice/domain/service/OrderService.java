@@ -20,7 +20,7 @@ public class OrderService {
     private final RedisTemplate<Long, Integer> redisTemplate;
 
     /**
-     * 주문 등록
+     * 주문 생성
      * */
     @Transactional
     public OrderDto.CreateResponse create(OrderDto.CreateRequest request, Long userId) {
@@ -34,7 +34,7 @@ public class OrderService {
 
         var savedOrder = orderRepository.save(order);
 
-        //redis db에 수량 감소
+        //TODO: redis db에 수량 감소 -> 이 부분 stockManagement-service 모듈이랑 통신해서 db 수량 감소시켜야함.
         updateProductStockInRedis(savedOrder.getProductId(), savedOrder.getQuantity());
 
         return OrderDto.CreateResponse.builder()
@@ -45,6 +45,7 @@ public class OrderService {
                 .orderStatus(savedOrder.getOrderStatus())
                 .build();
     }
+
     public void updateProductStockInRedis(Long productId, Integer quantity) {
         Integer currentStock = redisTemplate.opsForValue().get(productId);
         if(currentStock != null) {
@@ -81,7 +82,7 @@ public class OrderService {
 
     @Transactional
     public Page<Order> search(Long orderId, Pageable pageable) {
-        return orderRepository.searchByOrderIdContaining(orderId, pageable);
+        return orderRepository.searchByIdContaining(orderId, pageable);
     }
 
     /**
