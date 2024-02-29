@@ -29,9 +29,6 @@ public class Product extends BaseEntity {
     @Column(name = "product_stock")
     private int productStock;
 
-    @Column(name = "user_id")
-    private Long userId;
-
     public void update(String productName, String productInfo, Long productPrice, int productStock) {
         this.productName = productName;
         this.productInfo = productInfo;

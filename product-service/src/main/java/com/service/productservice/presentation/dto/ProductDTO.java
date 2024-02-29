@@ -1,6 +1,7 @@
 package com.service.productservice.presentation.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -36,6 +37,8 @@ public class ProductDTO {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class CreateRequest {
+        private Long id;
+
         @JsonProperty(value = "product_name")
         private String productName;
 
@@ -47,9 +50,6 @@ public class ProductDTO {
 
         @JsonProperty(value = "product_stock")
         private int productStock;
-
-//        @JsonProperty(value = "user_id")
-//        private Long userId;
     }
 
     @Getter
@@ -69,9 +69,6 @@ public class ProductDTO {
 
         @JsonProperty(value = "product_stock")
         private int productStock;
-
-//        @JsonProperty(value = "user_id")
-//        private Long userId;
     }
 
     @Getter

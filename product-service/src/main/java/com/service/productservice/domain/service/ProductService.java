@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class ProductService {
 
     private final ProductRepository productRepository;
-    private final RedisTemplate<Long, Integer> redisTemplate;
+    //private final RedisTemplate<Long, Integer> redisTemplate;
 
     /**
      * 상품 등록
@@ -34,7 +34,7 @@ public class ProductService {
         var savedProduct  = productRepository.save(product);
 
         //redis db에 저장
-        saveProductToRedis(savedProduct);
+        //saveProductToRedis(savedProduct);
 
         return ProductDTO.CreateResponse.builder()
                 .id(savedProduct.getId())
@@ -45,9 +45,9 @@ public class ProductService {
                 .build();
     }
 
-    private void saveProductToRedis(Product product) {
-        redisTemplate.opsForValue().set(product.getId(), product.getProductStock());
-    }
+//    private void saveProductToRedis(Product product) {
+//        redisTemplate.opsForValue().set(product.getId(), product.getProductStock());
+//    }
 
     /**
      * 상품 전체 조회(page)

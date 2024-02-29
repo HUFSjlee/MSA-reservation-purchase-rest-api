@@ -2,6 +2,7 @@ package com.service.productservice.presentation.controller;
 
 import com.service.productservice.common.response.BaseResponse;
 import com.service.productservice.domain.entity.Product;
+import com.service.productservice.domain.service.ApiService;
 import com.service.productservice.domain.service.ProductService;
 import com.service.productservice.presentation.dto.ProductDTO;
 import jakarta.validation.Valid;
@@ -16,12 +17,13 @@ import org.springframework.web.bind.annotation.*;
 public class ProductController {
 
     private final ProductService productService;
+    private final ApiService apiService;
 
     @PostMapping("/create")
     public BaseResponse<ProductDTO.CreateResponse> create(@RequestBody @Valid ProductDTO.CreateRequest request) {
-        //var responseProduct = productService.create(request);
-        //return responseProduct;
-        return BaseResponse.success(productService.create(request));
+        ProductDTO.CreateResponse response = productService.create(request);
+        apiService.saveStockInfo(response.getId(), response.getProductStock());
+        return BaseResponse.success(response);
     }
 
     @GetMapping("/all")
