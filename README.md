@@ -1,8 +1,21 @@
 # 📌reservation-purchase-rest-api
 예약-구매 서비스 REST API를 개발하고, 고도화를 목표로 합니다 :)
 
-## 🔎docker-compose 명령어 정리
-https://lush-fig-fef.notion.site/af06d6e0ff4a4e3e94cf816d87b4cf3f?pvs=4
+## 🔎docker-compose 명령어
+> **Docker 컨테이너 올리기**
+> 
+> docker-compose up
 
-**프로젝트 내 start.sh / stop.sh 파일을 추가해 주어서 명령어 입력 없이 실행 가능합니다.**
+> **Docker 컨테이너 내리기**
+> 
+> docker-compose down
+
+> **Docker 컨테이너 시작**
+> 
+> docker-compose start
+
+> **Docker 컨테이너 정지**
+> 
+> docker-compose stop
+
 
