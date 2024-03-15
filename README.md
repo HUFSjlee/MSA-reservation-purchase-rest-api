@@ -1,6 +1,24 @@
 # 📌reservation-purchase-rest-api
 예약-구매 서비스 REST API를 개발하고, 고도화를 목표로 합니다 :)
 
+## 기술스택
+### 라이브러리, 프레임워크, 도구 등
+* Back-End : Java 17, Spring Boot 3.2.2, Spring Security (with JWT)
+* ORM : Spring Data JPA
+* Database : MySQL8.0, Redis
+* Infra : Docker
+* REST API Documentation : Swagger
+* Tools: IntelliJ, Git
+  
+<img  src="https://img.shields.io/badge/java 17-007396?style=flat-square&logo=java&logoColor=white"> <img  src="https://img.shields.io/badge/springboot 3.2.2-6DB33F?style=flat-square&logo=springboot&logoColor=white">
+<img  src="https://img.shields.io/badge/Spring Data JPA-20C997?style=flat-square&logo=Spring Data JPA&logoColor=white">
+<img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=white"/>
+<img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white"/>
+<img  src="https://img.shields.io/badge/redis-CC0000?style=flat-square&logo=redis&logoColor=white">
+<img  src="https://img.shields.io/badge/git-F05032?style=flat-square&logo=git&logoColor=white">
+<img  src="https://img.shields.io/badge/swagger-85EA2D?style=flat-square&logo=Swagger&logoColor=black">
+<img  src="https://img.shields.io/badge/Intellij-000000?style=flat-square&logo=Intellij IDEA&logoColor=white">
+
 ## 프로젝트 개요
  **기간**
 | 개발기간 | 2024.01 ~ 2024.02 (4주) |
@@ -15,7 +33,9 @@
 기존에 만들었던 sns 프로젝트에 예약,구매 서비스를에 추가하는 과정에서 모놀리식 구조의 프로젝트를 마이크로서비스 아키텍쳐로 변경하고자 했습니다. 
 
 **목표**
-~~하는 것.
+
+1. 단일 서비스를 마이크로서비스로 분리하고, 각 마이크로서비스 간의 통신 및 데이터베이스 연동을 구현   
+2. API GATEWAY 도입
 
 ## 프로젝트 소개
 ### 목적
