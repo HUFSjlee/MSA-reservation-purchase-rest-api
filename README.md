@@ -19,7 +19,7 @@
 * ***REST API Documentation***  : Swagger  
 * ***Tools***: IntelliJ, Git
 <br>
-<br>
+
 ## :two: 프로젝트 개요
 
  * **기간**
@@ -44,25 +44,27 @@
 <br>
 
 ## :three: 프로젝트 소개
-### 목적
+* **목적**  
 xx입니다.
-### 기능!
-xx입니다.
-### 프로젝트 구조
 
-```
-├─MSA_ReservationPurchase
-│  ├─ docker  
-│  │  ├─ docker-compose.yml  
-│  ├─ api-gateway  
-│  ├─ eureka-server  
-|  ├─ user-service [module]  
-|  ├─ activities-service [module]  
-|  ├─ newsfeed-service [module]  
-|  ├─ product-service [module]  
-|  ├─ stock-service [module]  
-|  ├─ order-service [module]
-```
+* **기능**  
+xx입니다.
+
+* **프로젝트 구조**
+
+   ```
+   ├─MSA_ReservationPurchase
+   │  ├─ docker  
+   │  │  ├─ docker-compose.yml  
+   │  ├─ api-gateway  
+   │  ├─ eureka-server  
+   |  ├─ user-service [module]  
+   |  ├─ activities-service [module]  
+   |  ├─ newsfeed-service [module]  
+   |  ├─ product-service [module]  
+   |  ├─ stock-service [module]  
+   |  ├─ order-service [module]
+   ```
 
 
 ## :four: 서비스 아키텍처
