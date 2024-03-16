@@ -67,7 +67,7 @@ xx입니다.
 ![MSA_Architecture](https://github.com/HUFSjlee/MSA-reservation-purchase-rest-api/assets/67497759/42670ada-46f0-46c1-afac-fbc664f33d20)
 
 ## :five: ERD
-<img src="https://github.com/HUFSjlee/MSA-reservation-purchase-rest-api/assets/67497759/d81a483f-d211-4c4d-b0a7-feedf7a51397" alt="ERD" width="800" height="450">
+<img src="https://github.com/HUFSjlee/MSA-reservation-purchase-rest-api/assets/67497759/d81a483f-d211-4c4d-b0a7-feedf7a51397" alt="ERD" width="850" height="450">
 <hr style="border: 2px solid grey;">
 
 ## docker-compose 명령어
