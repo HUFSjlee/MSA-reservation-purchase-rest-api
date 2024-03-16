@@ -1,6 +1,6 @@
 # 📌SNS 기반의 예약 구매 서비스 (with Micro-Service Architecture)
 
-## :one: 기술스택
+## :one: 기술 스택
 
    &emsp;<img  src="https://img.shields.io/badge/java 17-007396?style=flat-square&logo=java&logoColor=white"> <img  src="https://img.shields.io/badge/springboot 3.2.2-6DB33F?style=flat-square&logo=springboot&logoColor=white">
    <img  src="https://img.shields.io/badge/Spring Data JPA-20C997?style=flat-square&logo=Spring Data JPA&logoColor=white">
@@ -37,18 +37,17 @@
   기존에 만들었던 sns 프로젝트에 예약,구매 서비스를에 추가하는 과정에서 모놀리식 구조의 프로젝트를 마이크로서비스 아키텍쳐로 변경하고자 했습니다. 
 
 * **목표**
-
-  1. 단일 서비스를 마이크로서비스로 분리하고, 각 마이크로서비스 간의 통신 및 데이터베이스 연동을 구현   
-  2. API GATEWAY 도입
+   1. 단일 서비스를 마이크로서비스로 분리하고, 각 마이크로서비스 간의 통신 및 데이터베이스 연동을 구현
+   2. API GATEWAY 도입
 <br>
 <br>
 
 ## :three: 프로젝트 소개
-* **목적**  
-xx입니다.
+* **요구사항**  
+
 
 * **기능**  
-xx입니다.
+
 
 * **프로젝트 구조**
 
