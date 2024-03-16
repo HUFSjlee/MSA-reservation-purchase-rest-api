@@ -1,7 +1,7 @@
 # 📌reservation-purchase-rest-api
 예약-구매 서비스 REST API를 개발하고, 고도화를 목표로 합니다 :)
 
-## 기술스택
+:one: 기술스택
 ### 라이브러리, 프레임워크, 도구 등
 * Back-End : Java 17, Spring Boot 3.2.2, Spring Security (with JWT)
 * ORM : Spring Data JPA
@@ -19,7 +19,8 @@
 <img  src="https://img.shields.io/badge/swagger-85EA2D?style=flat-square&logo=Swagger&logoColor=black">
 <img  src="https://img.shields.io/badge/Intellij-000000?style=flat-square&logo=Intellij IDEA&logoColor=white">
 
-## 프로젝트 개요
+:two: 프로젝트 개요
+
  **기간**
 | 개발기간 | 2024.01 ~ 2024.02 (4주) |
 |---------|-------------------------|
@@ -37,18 +38,30 @@
 1. 단일 서비스를 마이크로서비스로 분리하고, 각 마이크로서비스 간의 통신 및 데이터베이스 연동을 구현   
 2. API GATEWAY 도입
 
-## 프로젝트 소개
+:three: 프로젝트 소개
 ### 목적
 ~~합니다.
 ### 기능!
 ~~합니다.
 ### 프로젝트 구조
-~~합니다.
-### Service Architecture
+
+├─MSA_ReservationPurchase  
+│  ├─ docker  
+│  │  ├─ docker-compose.yml  
+│  ├─ api-gateway  
+│  ├─ eureka-server  
+|  ├─ user-service [module]  
+|  ├─ activities-service [module]  
+|  ├─ newsfeed-service [module]  
+|  ├─ product-service [module]  
+|  ├─ stock-service [module]  
+|  ├─ order-service [module]
+
+
+:four: Service Architecture
 ![MSA_Architecture](https://github.com/HUFSjlee/MSA-reservation-purchase-rest-api/assets/67497759/42670ada-46f0-46c1-afac-fbc664f33d20)
-### 다이어그램
-~~합니다.
-### ERD
+
+:five: ERD
 ![drawSQL-image-export-2024-03-14](https://github.com/HUFSjlee/MSA-reservation-purchase-rest-api/assets/67497759/d81a483f-d211-4c4d-b0a7-feedf7a51397)
 
 
