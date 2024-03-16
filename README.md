@@ -16,8 +16,8 @@
 ***Infra*** : Docker  
 ***REST API Documentation***  : Swagger  
 ***Tools***: IntelliJ, Git
-
-
+<br>
+<br>
 ## :two: 프로젝트 개요
 
  **기간**
@@ -36,6 +36,7 @@
 
 1. 단일 서비스를 마이크로서비스로 분리하고, 각 마이크로서비스 간의 통신 및 데이터베이스 연동을 구현   
 2. API GATEWAY 도입
+
 
 ## :three: 프로젝트 소개
 ### 목적
@@ -59,12 +60,12 @@ xx입니다.
 ```
 
 
-:four: Service Architecture
+## :four: Service Architecture
 ![MSA_Architecture](https://github.com/HUFSjlee/MSA-reservation-purchase-rest-api/assets/67497759/42670ada-46f0-46c1-afac-fbc664f33d20)
 
-:five: ERD
+## :five: ERD
 ![drawSQL-image-export-2024-03-14](https://github.com/HUFSjlee/MSA-reservation-purchase-rest-api/assets/67497759/d81a483f-d211-4c4d-b0a7-feedf7a51397)
-
+<hr style="border: 2px solid grey;">
 
 ## docker-compose 명령어
 > **Docker 컨테이너 올리기**
