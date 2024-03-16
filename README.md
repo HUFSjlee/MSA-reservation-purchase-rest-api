@@ -45,7 +45,8 @@
 ~~합니다.
 ### 프로젝트 구조
 
-├─MSA_ReservationPurchase  
+```
+├─MSA_ReservationPurchase
 │  ├─ docker  
 │  │  ├─ docker-compose.yml  
 │  ├─ api-gateway  
@@ -56,6 +57,7 @@
 |  ├─ product-service [module]  
 |  ├─ stock-service [module]  
 |  ├─ order-service [module]
+```
 
 
 :four: Service Architecture
