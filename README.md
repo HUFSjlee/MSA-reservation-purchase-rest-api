@@ -75,20 +75,17 @@ xx입니다.
 <hr style="border: 2px solid grey;">
 
 ## docker-compose 명령어
-> **Docker 컨테이너 올리기**
-> 
+```
+> Docker 컨테이너 올리기 
 > docker-compose up
 
-> **Docker 컨테이너 내리기**
-> 
+> Docker 컨테이너 내리기 
 > docker-compose down
 
-> **Docker 컨테이너 시작**
-> 
+> Docker 컨테이너 시작
 > docker-compose start
 
-> **Docker 컨테이너 정지**
-> 
+> Docker 컨테이너 종료
 > docker-compose stop
-
+```
 
