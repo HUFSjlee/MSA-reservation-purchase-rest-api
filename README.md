@@ -65,7 +65,7 @@
   **:large_blue_circle: 특정 시간에 구매버튼이 활성화 되는 예약구매 시스템 (결제 방법, 가격, 배송지 입력 등은 크게 신경쓰지 않았습니다)**
      ![(4)결제 프로세스 요구사항](https://github.com/HUFSjlee/MSA-reservation-purchase-rest-api/assets/67497759/84406405-a39b-4bbe-97b9-44a9ac0cfe81)
 
-  **:large_blue_circle: 실시간 재고 관리 서비스를 만들어서 내부 통신을 통해 재고만 반환**
+  **:large_blue_circle: Redis를 사용하여 실시간 재고 관리 서비스를 만들어서 내부 통신을 통해 재고만 반환**
 <br>
 <br>
 <br>
@@ -100,6 +100,13 @@
   * 남은 수량 API 구현  
   * 결제 진입 API 구현
   * 결제 API 구현
+
+  **:heavy_check_mark: 재고 증감 구현**
+
+  * 실시간 재고 관리 모듈을 만들고 이 모듈만 redis에 접근하게 함으로써 다른 각 서비스에서 redis 접근 관련 코드를 전부 제거
+  * 실시간 재고 관리 모듈을 통해서만 재고를 증감
+    
+    
 <br>
 
 ## :four: 프로젝트 구조
