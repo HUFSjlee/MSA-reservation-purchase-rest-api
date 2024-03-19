@@ -50,7 +50,7 @@
   
   **:large_blue_circle: Docker를 통한 로컬 개발 환경 구축**
   
-  * ***docker-compose.yml*** 파일을 작성하여 각 마이크로서비스 컴포넌트 및 필수 인프라스트럭처(데이터베이스)를 정의
+  * ***docker-compose.yml*** 파일을 작성하여 각 마이크로서비스 컴포넌트 및 필수 Infrastructure(데이터베이스)를 정의
      
   * ***docker-compose.yml*** 파일을 통해 서비스 간의 통신이나 외부 의존성을 관리
 
