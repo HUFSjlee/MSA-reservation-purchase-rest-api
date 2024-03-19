@@ -45,7 +45,7 @@
 <br>
 
 ## :three: 프로젝트 소개
-### 구현 요구사항
+### 요구사항
 <br>
   
   **:large_blue_circle: Docker를 통한 로컬 개발 환경 구축**
