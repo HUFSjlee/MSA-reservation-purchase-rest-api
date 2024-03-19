@@ -45,71 +45,64 @@
 <br>
 
 ## :three: 프로젝트 소개
-* **구현 요구사항**
+### 구현 요구사항
+<br>
   
-  1. Docker를 통한 로컬 개발 환경 구축
+  **:large_blue_circle: Docker를 통한 로컬 개발 환경 구축**
+  
+  * ***docker-compose.yml*** 파일을 작성하여 각 마이크로서비스 컴포넌트 및 필수 인프라스트럭처(데이터베이스)를 정의
      
-     ***docker-compose.yml*** 파일을 작성하여 각 마이크로서비스 컴포넌트 및 필수 인프라스트럭처(데이터베이스)를 정의
-     
-     ***docker-compose.yml*** 파일을 통해 서비스 간의 통신이나 외부 의존성을 관리
+  * ***docker-compose.yml*** 파일을 통해 서비스 간의 통신이나 외부 의존성을 관리
 
-  2. 기존 모놀리식 구조의 프로젝트를 마이크로서비스 구조로 분리
-        멀티 모듈 구조로 프로젝트를 구성하고, 각 마이크로서비스의 독립성을 보장
+  **:large_blue_circle: 기존 모놀리식 구조의 프로젝트를 마이크로서비스 구조로 분리**
 
-  3. 모노리스 서비스를 마이크로 서비스로 나누기
-  4. API Gateway의 도입
-  5. 특정 시간에 구매버튼이 활성화 되는 예약구매 시스템 (결제 방법, 가격, 배송지 입력 등은 크게 신경쓰지 않았습니다)
- 
-     1. 상품 조회
-      2. 결제 화면 진입
-      3. 결제 시도
-      4. 결제 중
-      5. 결제 취소
-      6. 결제 완료 
+  * 멀티 모듈 구조로 프로젝트를 구성하고, 각 마이크로서비스의 독립성 보장
+
+  **:large_blue_circle: 모노리스 서비스를 마이크로 서비스로 나누기**
+  
+  **:large_blue_circle: API Gateway의 도입**
+  
+  **:large_blue_circle: 특정 시간에 구매버튼이 활성화 되는 예약구매 시스템 (결제 방법, 가격, 배송지 입력 등은 크게 신경쓰지 않았습니다)**
      ![(4)결제 프로세스 요구사항](https://github.com/HUFSjlee/MSA-reservation-purchase-rest-api/assets/67497759/84406405-a39b-4bbe-97b9-44a9ac0cfe81)
 
-   6. 실시간 재고 관리 서비스를 만들어서 내부 통신을 통해 재고만 반환
+  **:large_blue_circle: 실시간 재고 관리 서비스를 만들어서 내부 통신을 통해 재고만 반환**
+<br>
+<br>
+<br>
+<hr style="border: 2px solid grey;">
+
+### 구현 내용  
 <br>
 
+  **:heavy_check_mark: 마이크로서비스 간의 통신 및 데이터베이스 연동 구현**
   
-* **구현 내용**  
+  **:heavy_check_mark: user-service / activities-service / newsfeed-service 각 모듈의 settings.gradle 및 build.gradle을 활용해 멀티 모듈 프로젝트 구조 변경 구현**
   
-  1. 마이크로서비스 간의 통신 및 데이터베이스 연동 구현
-  2. user-service / activities-service / newsfeed-service 각 모듈의 settings.gradle 및 build.gradle을 활용해 멀티 모듈 프로젝트 구조 변경
-  3. 3개의 모노리스 서비스를 3개의 마이크로 서비스로 만들기
+  **:heavy_check_mark: 3개의 모노리스 서비스를 3개의 마이크로 서비스로 만들기**
      ![image](https://github.com/HUFSjlee/MSA-reservation-purchase-rest-api/assets/67497759/cbf338d8-fc4d-4057-bc6d-679833a00f07)
-  4. 각 모듈의 역할에 맞는 도메인 코드만 그대로 두고 다른 도메인 관련 코드 제거
+  
+  **:heavy_check_mark: 각 모듈의 역할에 맞는 도메인 코드만 그대로 두고 다른 도메인 관련 코드 제거**
   <br>
   
-  5. 3개의 마이크로 서비스가 서로 통신할 수 있도록 구현
+  **:heavy_check_mark: 3개의 마이크로 서비스가 서로 통신할 수 있도록 구현**
      ![(2)msa 구조 서로 통신](https://github.com/HUFSjlee/MSA-reservation-purchase-rest-api/assets/67497759/f43d7a74-86ad-4b37-8ba9-ad06eab20b54)
-  6. RestTemplate을 사용해서 API Gateway 만들기
-        API GATEWAY 서비스를 새로 만들어 실행(port: 8083)
-        기존의 모노리스 서비스가 가지고 있던 모든 API 들을 API GATEWAY에 노출
-        해당 API로 들어온 요청을, 내부의 마이크로 서비스로 전달
+  
+  **:heavy_check_mark: RestTemplate을 사용해서 API Gateway 만들기**
+  * API GATEWAY 서비스를 새로 만들어 실행(port: 8083)
+  * 기존의 모노리스 서비스가 가지고 있던 모든 API 들을 API GATEWAY에 노출
+  * 해당 API로 들어온 요청을, 내부의 마이크로 서비스로 전달
      ![(3)api-gateway](https://github.com/HUFSjlee/MSA-reservation-purchase-rest-api/assets/67497759/4962b8d5-f3af-4ebc-bfce-6f3ed4de5f69)
-  7. 쇼핑몰 목업 구현
-     상품 목록 API
-     상품 상세 페이지 API
-     남은 수량 API 
-     결제 진입 API
-     결제 API
-
-
-
- 7. 쇼핑몰 목업 구축
-    
-		* 상품 목록 API 구현
-		* 상품 상세 페이지 API 구현
-		* 남은 수량 API 구현
-		* 결제 진입 API 구현
-		* 결제 API 구현
-
   
-  
-   
+  **:heavy_check_mark: 쇼핑몰 목업 구현**
 
-* **프로젝트 구조**
+  * 상품 목록 API 구현
+  * 상품 상세 페이지 API 구현
+  * 남은 수량 API 구현  
+  * 결제 진입 API 구현
+  * 결제 API 구현
+<br>
+
+## :four: 프로젝트 구조
 
    ```
    ├─MSA_ReservationPurchase
@@ -126,10 +119,10 @@
    ```
 
 
-## :four: 서비스 아키텍처
+## :five: 서비스 아키텍처
 ![MSA_Architecture](https://github.com/HUFSjlee/MSA-reservation-purchase-rest-api/assets/67497759/42670ada-46f0-46c1-afac-fbc664f33d20)
 
-## :five: ERD
+## :six: ERD
 <img src="https://github.com/HUFSjlee/MSA-reservation-purchase-rest-api/assets/67497759/d81a483f-d211-4c4d-b0a7-feedf7a51397" alt="ERD" width="850" height="450">
 <hr style="border: 2px solid grey;">
 
