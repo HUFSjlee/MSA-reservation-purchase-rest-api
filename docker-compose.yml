@@ -6,7 +6,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./rds.sql:/docker-entrypoint-initdb.d/rds.sql
+      - ./rds.sql:-entrypoint-initdb.d/rds.sql
     environment:
       MYSQL_DATABASE: hufsjlee
       MYSQL_USER: hufsjlee
@@ -17,7 +17,10 @@ services:
       - msa-network
 
   api-gateway:
-    image: api-gateway:tag
+#    image: api-gateway:tag
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
     ports:
       - "8080:8080"
     networks:
@@ -25,10 +28,10 @@ services:
 
 
   user-service:
-    image: user-service-server:tag
-#    build:
-#      context: ../
-#      dockerfile: user-service/docker/Dockerfile
+#    image: user-service-server:tag
+    build:
+      context: ./user-service
+      dockerfile: Dockerfile
     ports:
       - "8081:8081"
     depends_on:
@@ -39,10 +42,10 @@ services:
       - msa-network
 
   newsfeed-service:
-    image: newsfeed-service-server:tag
-#    build:
-#      context: ../
-#      dockerfile: newsfeed-service/docker/Dockerfile
+#    image: newsfeed-service-server:tag
+    build:
+      context: ./newsfeed-service
+      dockerfile: Dockerfile
     ports:
       - "8082:8082"
     depends_on:
@@ -53,10 +56,10 @@ services:
       - msa-network
 
   activities-service:
-    image: activities-service-server:tag
-#    build:
-#      context: ../
-#      dockerfile: activities-service/docker/Dockerfile
+#    image: activities-service-server:tag
+    build:
+      context: ./activities-service
+      dockerfile: Dockerfile
     ports:
       - "8083:8083"
     depends_on:
@@ -67,10 +70,10 @@ services:
       - msa-network
 
   product-service:
-    image: product-service-server:tag
-    #    build:
-    #      context: ../
-    #      dockerfile: activities-service/docker/Dockerfile
+#    image: product-service-server:tag
+    build:
+      context: ./product-service
+      dockerfile: Dockerfile
     ports:
       - "8084:8084"
     depends_on:
@@ -87,7 +90,10 @@ services:
       - msa-network
 
   order-service:
-    image: order-service-server:tag
+#    image: order-service-server:tag
+    build:
+      context: ./order-service
+      dockerfile: Dockerfile
     ports:
       - "8085:8085"
     depends_on:
@@ -104,7 +110,10 @@ services:
       - msa-network
 
   stock-service:
-    image: stock-service-server:tag
+#    image: stock-service-server:tag
+    build:
+      context: ./stock-service
+      dockerfile: Dockerfile
     ports:
       - "8086:8086"
     depends_on:
