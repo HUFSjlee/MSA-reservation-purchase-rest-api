@@ -1,9 +1,5 @@
-FROM openjdk:18-jdk-slim
-
-WORKDIR /app/userservice
-
-COPY ../build/libs/user-service-0.0.1-SNAPSHOT.jar .
-
+FROM eclipse-temurin:17-jdk-jammy
+WORKDIR /app
+COPY build/libs/app.jar app.jar
 EXPOSE 8081
-
-ENTRYPOINT ["java", "-jar", "user-service-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","/app/app.jar"]

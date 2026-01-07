@@ -1,9 +1,5 @@
-FROM openjdk:18-jdk-slim
-
-WORKDIR /app/activitiesservice
-
-COPY ../build/libs/activities-service-0.0.1-SNAPSHOT.jar .
-
+FROM eclipse-temurin:17-jdk-jammy
+WORKDIR /app
+COPY build/libs/app.jar app.jar
 EXPOSE 8083
-
-ENTRYPOINT ["java", "-jar", "activities-service-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","/app/app.jar"]

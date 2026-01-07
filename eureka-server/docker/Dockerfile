@@ -1,9 +1,5 @@
-FROM openjdk:18-jdk-slim
-
-WORKDIR /app/eurekeserver
-
-COPY ../build/libs/eureka-server-0.0.1-SNAPSHOT.jar .
-
+FROM eclipse-temurin:17-jdk-jammy
+WORKDIR /app
+COPY build/libs/app.jar app.jar
 EXPOSE 8761
-
-ENTRYPOINT ["java", "-jar", "eureka-server-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]

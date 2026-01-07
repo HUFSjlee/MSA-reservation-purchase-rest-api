@@ -2,20 +2,28 @@ server:
   port: 8086
 
 spring:
+  application:
+    name: stock-service
+
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://rds:3306/hufsjlee
     username: hufsjlee
     password: 123123
-  security:
+
+  data:
+    redis:
+      host: ${SPRING_REDIS_HOST:redis}
+      port: ${SPRING_REDIS_PORT:6379}
 
   jpa:
     database: mysql
-    hibernate: # hibernate \uC0AC\uC6A9 \uC124\uC815
-      ddl-auto: create #create, alter, drop, truncate
+    hibernate:
+      ddl-auto: create
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
@@ -24,13 +32,9 @@ spring:
         default_batch_fetch_size: 1000
     defer-datasource-initialization: true
 
-
-  # SQL \uC2A4\uD06C\uB9BD\uD2B8\uB97C \uC0AC\uC6A9\uD558\uC5EC \uCD08\uAE30 \uB370\uC774\uD130\uB97C \uB370\uC774\uD130\uBCA0\uC774\uC2A4\uC5D0 \uB85C\uB4DC\uD558\uB294 \uB370 \uC0AC\uC6A9\uB418\uB294 \uC124\uC815
-  #  sql:
-  #    init:
-  #      mode: always
-  #      data-locations: classpath:data.sql
-  data:
-    redis:
-      host: ${SPRING_REDIS_HOST}
-      port: ${SPRING_REDIS_PORT}
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka

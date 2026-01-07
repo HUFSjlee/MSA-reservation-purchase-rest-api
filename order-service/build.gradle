@@ -38,23 +38,18 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
     implementation 'io.springfox:springfox-boot-starter:3.0.0'
 
-    //이메일 인증
-    //implementation 'org.springframework.boot:spring-boot-starter-mail:2.7.0'
-    //implementation 'com.sun.mail:jakarta.mail:2.0.0'
-
-    //firebase storage
-    //implementation 'com.google.firebase:firebase-admin:8.2.0'
-
     implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
     implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
     implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
 
-    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:3.0.5'
-
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.1.0'
     //redis
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+tasks.named("bootJar") {
+    archiveFileName = "app.jar"
 }

@@ -1,9 +1,5 @@
-FROM openjdk:18-jdk-slim
-
-WORKDIR /app/orderservice
-
-COPY ../build/libs/order-service-0.0.1-SNAPSHOT.jar .
-
+FROM eclipse-temurin:17-jdk-jammy
+WORKDIR /app
+COPY build/libs/app.jar app.jar
 EXPOSE 8085
-
-ENTRYPOINT ["java", "-jar", "order-service-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]

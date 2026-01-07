@@ -16,114 +16,114 @@ services:
     networks:
       - msa-network
 
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
+    networks:
+      - msa-network
+
   api-gateway:
     image: api-gateway:tag
+    build:
+      context: ../api-gateway
+      dockerfile: docker/Dockerfile
     ports:
       - "8080:8080"
     networks:
       - msa-network
 
+  eureka-server:
+    image: eureka-server:tag
+    build:
+      context: ../eureka-server
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8761:8761"
+    networks:
+      - msa-network
 
   user-service:
     image: user-service-server:tag
-#    build:
-#      context: ../
-#      dockerfile: user-service/docker/Dockerfile
+    build:
+      context: ../user-service
+      dockerfile: docker/Dockerfile
     ports:
       - "8081:8081"
     depends_on:
-      - rds
-    links:
       - rds
     networks:
       - msa-network
 
   newsfeed-service:
     image: newsfeed-service-server:tag
-#    build:
-#      context: ../
-#      dockerfile: newsfeed-service/docker/Dockerfile
+    build:
+      context: ../newsfeed-service
+      dockerfile: docker/Dockerfile
     ports:
       - "8082:8082"
     depends_on:
-      - rds
-    links:
       - rds
     networks:
       - msa-network
 
   activities-service:
     image: activities-service-server:tag
-#    build:
-#      context: ../
-#      dockerfile: activities-service/docker/Dockerfile
+    build:
+      context: ../activities-service
+      dockerfile: docker/Dockerfile
     ports:
       - "8083:8083"
     depends_on:
-      - rds
-    links:
       - rds
     networks:
       - msa-network
 
   product-service:
     image: product-service-server:tag
-    #    build:
-    #      context: ../
-    #      dockerfile: activities-service/docker/Dockerfile
+    build:
+      context: ../product-service
+      dockerfile: docker/Dockerfile
     ports:
       - "8084:8084"
     depends_on:
       - rds
       - redis
-    links:
-      - rds
-      - redis
     environment:
       - SPRING_REDIS_HOST=redis
       - SPRING_REDIS_PORT=6379
-
     networks:
       - msa-network
 
   order-service:
     image: order-service-server:tag
+    build:
+      context: ../order-service
+      dockerfile: docker/Dockerfile
     ports:
       - "8085:8085"
     depends_on:
       - rds
       - redis
-    links:
-      - rds
-      - redis
     environment:
       - SPRING_REDIS_HOST=redis
       - SPRING_REDIS_PORT=6379
-
     networks:
       - msa-network
 
   stock-service:
     image: stock-service-server:tag
+    build:
+      context: ../stock-service
+      dockerfile: docker/Dockerfile
     ports:
       - "8086:8086"
     depends_on:
       - rds
       - redis
-    links:
-      - rds
-      - redis
     environment:
       - SPRING_REDIS_HOST=redis
       - SPRING_REDIS_PORT=6379
-
-    networks:
-      - msa-network
-
-  redis:
-    image: "redis:latest"
-    ports:
-      - "6379:6379"
     networks:
       - msa-network
 
