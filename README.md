@@ -164,3 +164,39 @@ MSA_ReservationPurchase
 ├─ settings.gradle
 ├─ README.md
 └─ (기타 설정/문서 파일)
+```
+## 실행 방법
+
+### 실행
+
+1) **사전 준비**
+- Docker Desktop을 실행합니다.
+- (선택) 로컬 환경변수 파일 `.env`를 준비합니다.  
+  - 예: `docker/.env`  
+  - 해당 파일은 레포에 포함되지 않도록 `.gitignore`로 관리합니다.
+
+2) **Docker Compose 실행**
+- 아래 명령으로 모든 서비스를 빌드 및 실행합니다.
+```bash
+cd docker
+# 1) 인프라 먼저
+docker compose up -d rds redis
+
+# (선택) rds 준비 확인
+docker compose logs -f rds
+# "ready for connections" 같은 문구 확인 후 Ctrl + C
+
+# 2) Eureka
+docker compose up -d eureka-server
+
+# 3) 나머지 서비스 + 게이트웨이
+docker compose up -d api-gateway user-service activities-service newsfeed-service product-service order-service stock-service
+
+# 상태 확인
+docker compose ps
+```
+### 종료
+```
+cd docker
+docker compose down
+```
