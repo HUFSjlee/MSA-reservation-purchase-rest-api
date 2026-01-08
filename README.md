@@ -121,3 +121,46 @@
 
 **해결 방안**  
 외부 노출 API는 통합하고 내부 서비스 구조는 숨기기 위해 **API Gateway 도입 필요성**을 인지했습니다.
+
+**해결 과정**  
+API Gateway 모듈을 구성하고, 외부에서 들어오는 요청은 **Gateway에서 내부 마이크로서비스로 라우팅**되도록 설계했습니다.
+
+---
+
+### Issue 3) 재고 관련 기능마다 Redis 접근 코드가 중복되는 문제
+**문제**  
+각 모듈을 분리한 후, 아래 기능들에서 Redis 접근 코드가 중복되었습니다.
+- 상품 등록 / 삭제
+- 재고 수량 확인
+- 상품 구매 후 재고 차감
+
+**해결 방안**  
+실시간 재고 관리 모듈(**Stock-service**)을 만들어 이 모듈에서만 재고를 관리하도록 구조를 변경했습니다.
+
+**해결 과정**  
+Stock-service만 Redis에 접근하게 하고, 다른 서비스에서는 Redis 접근 코드를 제거했습니다.  
+재고 증감/조회는 **Stock-service API를 통해서만** 이루어지도록 수정했습니다.
+
+---
+
+## 프로젝트 구조
+
+```txt
+MSA_ReservationPurchase
+├─ activities-service/
+├─ api-gateway/
+├─ eureka-server/
+├─ newsfeed-service/
+├─ order-service/
+├─ product-service/
+├─ stock-service/
+├─ user-service/
+├─ docker/
+│  ├─ docker-compose.yml
+│  ├─ rds.sql
+│  ├─ start-rds.sh
+│  └─ stop-rds.sh
+├─ build.gradle
+├─ settings.gradle
+├─ README.md
+└─ (기타 설정/문서 파일)
