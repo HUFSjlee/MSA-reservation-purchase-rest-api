@@ -23,6 +23,16 @@ services:
     networks:
       - msa-network
 
+  adminer:
+    image: adminer:4
+    restart: always
+    ports:
+      - "18080:8080"
+    depends_on:
+      - rds
+    networks:
+      - msa-network
+
   api-gateway:
     image: api-gateway:tag
     build:
