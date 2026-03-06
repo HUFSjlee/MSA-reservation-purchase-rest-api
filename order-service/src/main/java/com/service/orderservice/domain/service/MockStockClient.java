@@ -1,69 +1,70 @@
 package com.service.orderservice.domain.service;
 
+import com.service.orderservice.domain.client.StockFeignClient;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
+import org.springframework.stereotype.Service;
 
-import java.util.Map;
-
-@Component
+@Service
 @RequiredArgsConstructor
 public class MockStockClient {
 
-    private final RestTemplateBuilder restTemplateBuilder;
+    private final StockFeignClient stockFeignClient;
 
-    @Value("${mock.stock-service-base-url:http://stock-service:8086}")
-    private String stockServiceBaseUrl;
-
+    @Retry(name = "stockApi", fallbackMethod = "enterPaymentFallback")
+    @CircuitBreaker(name = "stockApi", fallbackMethod = "enterPaymentFallback")
     public StockPaymentEntryResult enterPayment(Long userId, Long productId) {
-        RestTemplate restTemplate = restTemplateBuilder.build();
-        Map<String, Object> response = restTemplate.postForObject(
-                stockServiceBaseUrl + "/stocks/mock/payment-entry",
-                Map.of("userId", userId, "productId", productId),
-                Map.class
-        );
-        Map<String, Object> result = extractResult(response);
-        return new StockPaymentEntryResult(
-                String.valueOf(result.get("paymentSessionId")),
-                toLong(result.get("userId")),
-                toLong(result.get("productId")),
-                toInt(result.get("remainingStock"))
-        );
-    }
+        StockFeignClient.StockApiResponse<StockFeignClient.StockPaymentEntryResponse> response =
+                stockFeignClient.enterPayment(new StockFeignClient.StockPaymentEntryRequest(userId, productId));
 
-    public StockPaymentResult pay(String paymentSessionId) {
-        RestTemplate restTemplate = restTemplateBuilder.build();
-        Map<String, Object> response = restTemplate.postForObject(
-                stockServiceBaseUrl + "/stocks/mock/payment",
-                Map.of("paymentSessionId", paymentSessionId),
-                Map.class
-        );
-        Map<String, Object> result = extractResult(response);
-        return new StockPaymentResult(
-                String.valueOf(result.get("paymentSessionId")),
-                toLong(result.get("userId")),
-                toLong(result.get("productId")),
-                Boolean.parseBoolean(String.valueOf(result.get("success"))),
-                String.valueOf(result.get("reason")),
-                toInt(result.get("remainingStock"))
-        );
-    }
-
-    private Map<String, Object> extractResult(Map<String, Object> response) {
-        if (response == null || !response.containsKey("result")) {
+        if (response == null || response.result() == null) {
             throw new IllegalStateException("Invalid response from stock-service");
         }
-        return (Map<String, Object>) response.get("result");
+
+        StockFeignClient.StockPaymentEntryResponse result = response.result();
+        return new StockPaymentEntryResult(
+                result.paymentSessionId(),
+                result.userId(),
+                result.productId(),
+                result.remainingStock() == null ? 0 : result.remainingStock()
+        );
     }
 
-    private Long toLong(Object value) {
-        return value == null ? null : Long.valueOf(String.valueOf(value));
+    @Retry(name = "stockApi", fallbackMethod = "payFallback")
+    @CircuitBreaker(name = "stockApi", fallbackMethod = "payFallback")
+    public StockPaymentResult pay(String paymentSessionId) {
+        StockFeignClient.StockApiResponse<StockFeignClient.StockPaymentResponse> response =
+                stockFeignClient.pay(new StockFeignClient.StockPaymentRequest(paymentSessionId));
+
+        if (response == null || response.result() == null) {
+            throw new IllegalStateException("Invalid response from stock-service");
+        }
+
+        StockFeignClient.StockPaymentResponse result = response.result();
+        return new StockPaymentResult(
+                result.paymentSessionId(),
+                result.userId(),
+                result.productId(),
+                Boolean.TRUE.equals(result.success()),
+                result.reason(),
+                result.remainingStock() == null ? 0 : result.remainingStock()
+        );
     }
 
-    private int toInt(Object value) {
-        return value == null ? 0 : Integer.parseInt(String.valueOf(value));
+    public StockPaymentEntryResult enterPaymentFallback(Long userId, Long productId, Throwable throwable) {
+        throw new IllegalStateException("Stock service is temporarily unavailable for payment-entry", throwable);
+    }
+
+    public StockPaymentResult payFallback(String paymentSessionId, Throwable throwable) {
+        return new StockPaymentResult(
+                paymentSessionId,
+                null,
+                null,
+                false,
+                "STOCK_SERVICE_TEMPORARILY_UNAVAILABLE",
+                0
+        );
     }
 
     public record StockPaymentEntryResult(
@@ -84,4 +85,3 @@ public class MockStockClient {
     ) {
     }
 }
-
